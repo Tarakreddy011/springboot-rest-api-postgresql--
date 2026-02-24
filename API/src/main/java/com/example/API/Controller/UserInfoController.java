@@ -1,5 +1,6 @@
 package com.example.API.Controller;
 
+import com.example.API.DTO.UserPhotoUrlDto;
 import com.example.API.Entity.UserInfo;
 import com.example.API.Service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,12 @@ public class UserInfoController {
     @GetMapping("/{id}")
     public UserInfo getUser(@PathVariable Long id) {
         return userInfoService.getUserInfoById(id);
+    }
+
+    // ASSIGN PHOTO URL TO USER
+    @PutMapping("/{id}/photo")
+    public UserInfo assignPhotoToUser(@PathVariable Long id, @RequestBody UserPhotoUrlDto userPhotoDto) {
+        return userInfoService.assignPhotoToUser(id, userPhotoDto.getPhotoUrl());
     }
 
     // DELETE

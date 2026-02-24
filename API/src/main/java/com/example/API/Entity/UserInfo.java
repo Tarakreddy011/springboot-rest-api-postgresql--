@@ -1,6 +1,8 @@
 package com.example.API.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,7 +29,12 @@ public class UserInfo {
     @Column(nullable = false)
     String phone;
 
+    @Column(name = "photo_url")
+    @JsonAlias({"userPhotoUrl", "UserPhotoUrl"})
+    private String photoUrl;
+
 
     @OneToOne(mappedBy = "userInfo")
+    @JsonIgnore
     private Login login;
 }
